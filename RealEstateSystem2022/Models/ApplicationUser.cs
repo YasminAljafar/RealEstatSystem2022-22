@@ -32,9 +32,5 @@ namespace RealEstateSystem2022.Models
 
         public DateTime RegisterDate { get; set; }
 
-        public static implicit operator ApplicationUser(ApplicationUser v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

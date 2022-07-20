@@ -19,6 +19,8 @@ namespace RealEstateSystem2022
 {
     public class Startup
     {
+       
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,15 +37,35 @@ namespace RealEstateSystem2022
             services.AddDbContext<RealEstateDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+         services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
+
+
+                //// Password settings.
+                //options.Password.RequireDigit = true;
+                //options.Password.RequireLowercase = true;
+                //options.Password.RequireNonAlphanumeric = true;
+                //options.Password.RequireUppercase = true;
+                //options.Password.RequiredLength = 6;
+                //options.Password.RequiredUniqueChars = 1;
+
+                //// Lockout settings.
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+                //options.Lockout.AllowedForNewUsers = true;
+
+                //// User settings.
+                //options.User.AllowedUserNameCharacters =
+                //"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                //options.User.RequireUniqueEmail = false;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()

@@ -1,11 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@*@inject UserManager<ApplicationUser> UserManager1*@
+
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
+    {
+        @*@if (UserManager1.GetUserAsync(User).Result.Image != null)
+        {
+         <li class="nav-item">
+        <img class="rounded-circle" alt="profile" src="data:image/*;base64,@Convert.ToBase64String(UserManager1.GetUserAsync(User).Result.Image)"> 
+        </li>  
+        }*@ 
+        <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
     </li>
     <li class="nav-item">

@@ -21,14 +21,14 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -47,15 +47,15 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-            [Display(Name = "FirstName")]
-            public string FirstName { get; set; }
+            //[Required]
+            //[StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            //[Display(Name = "FirstName")]
+            //public string FirstName { get; set; }
 
-            [Required]
-            [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-            [Display(Name = "LastName")]
-            public string LastName { get; set; }
+            //[Required]
+            //[StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            //[Display(Name = "LastName")]
+            //public string LastName { get; set; }
 
             [Required]
             [EmailAddress]
@@ -86,13 +86,12 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new IdentityUser
                 { 
                     
                     UserName = new MailAddress(Input.Email).User,          
                     Email = Input.Email,
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                   
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

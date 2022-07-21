@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System.Net.Mail;
+using RealEstateSystem2022.Data.RealEstateContext;
+using RealEstateSystem2022.Helpers;
 
 namespace RealEstateSystem2022.Areas.Identity.Pages.Account
 {
@@ -25,17 +27,21 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        RealEstateDbContext db;
+        
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RealEstateDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            db= context;    
         }
 
         [BindProperty]
@@ -47,15 +53,8 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            //[Required]
-            //[StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-            //[Display(Name = "FirstName")]
-            //public string FirstName { get; set; }
-
-            //[Required]
-            //[StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-            //[Display(Name = "LastName")]
-            //public string LastName { get; set; }
+            [Required]
+            public string Id { get; set; }
 
             [Required]
             [EmailAddress]
@@ -72,27 +71,78 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-        }
 
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
+            [Maxlength(500)]
+            public byte[] Image { get; set; }
+
+            [Required]
+            public bool Gender { get; set; }
+
+            [Required]
+            [Maxlength(50)]
+            public string Country { get; set; }
+
+            [Required]
+            [Maxlength(50)]
+            public string City { get; set; }
+
+            [Required]
+            public UserType UserType { get; set; }
+
+        }
+       
         public async Task OnGetAsync(string returnUrl = null)
         {
+           
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            var currentuser = db.User.FirstOrDefault(User => User.Id == GenericVariables.CurrentUser) ;
+            Input = new InputModel
+            {
+                UserType = currentuser.UserType,
+            };
         }
 
         public async Task<IActionResult> OnPostAsync(string mailAddress, string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
+           
+           
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser
                 { 
-                    
                     UserName = new MailAddress(Input.Email).User,          
-                    Email = Input.Email,
-                   
+                    Email = Input.Email,   
                 };
+                var userIdentity = _userManager.FindByEmailAsync(Input.Email);
+                var applicationUser = new ApplicationUser
+                {
+                   Id = userIdentity.Id,
+                   FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    Gender = Input.Gender,
+                    Image = Input.Image,
+                    Country = Input.Country,
+                    City = Input.City,
+                    UserType = Input.UserType
+                };
+               
+                
+                db.User.Add(applicationUser);
+                db.SaveChanges();
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

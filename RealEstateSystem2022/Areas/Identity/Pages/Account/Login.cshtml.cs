@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RealEstateSystem2022.Models;
+using RealEstateSystem2022.Helpers;
 
 namespace RealEstateSystem2022.Areas.Identity.Pages.Account
 {
@@ -45,7 +46,7 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
         {
             public string id { get; set; }
             [Required]
-            [Display(Name ="Email or UserName")]
+            [Display(Name ="UserName")]
             public string Email { get; set; }
 
             [Required]
@@ -76,14 +77,18 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+            
+           ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ApplicationUser user=new ApplicationUser();
+            var user = _userManager.FindByEmailAsync(Input.Email);
+            GenericVariables.CurrentUser = user.Id;
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

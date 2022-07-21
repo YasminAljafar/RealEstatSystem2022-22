@@ -9,7 +9,7 @@
 <partial name="_StatusMessage" for="StatusMessage" />
  <form id="profile-form" method="post" enctype="multipart/form-data">
 <div class="row">
-    <div class="col-md-6">
+    < class="col-md-6">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
@@ -34,33 +34,34 @@
                     <option>user</option>
                     <option>admin</option>
                 </select>
-              
             </div>
+
               <div class="form-floating">
                    <label asp-for="Input.Country" class="form-label"></label>
                 <input asp-for="Input.Country" class="form-control"  />
-               
             </div>
-              <div class="form-floating">
-                    <label asp-for="Input.Active" class="form-label"></label>
-                <input asp-for="Input.Active" class="form-control"  />
-              
-            </div>
-              <div class="form-floating">
-                    <label asp-for="Input.Birthday" class="form-label"></label>
-                <input asp-for="Input.Birthday" class="form-control"  />
-              
-            </div>
+
+            
               <div class="form-floating">
                     <label asp-for="Input.City" class="form-label"></label>
                 <input asp-for="Input.City" class="form-control"  />
-              
             </div>
+
+              <div class="form-floating">
+                    <label asp-for="Input.Active" class="form-label"></label>
+                <input asp-for="Input.Active" class="form-control"  />  
+            </div>
+
+              <div class="form-floating">
+                    <label asp-for="Input.Birthday" class="form-label"></label>
+                <input asp-for="Input.Birthday" class="form-control"  />
+              </div>
+            
               <div class="form-floating">
                       <label asp-for="Input.Description" class="form-label"></label>
                 <textarea asp-for="Input.Description" class="form-control" ></textarea>
-            
             </div>
+
               <div class="form-floating">
                    <label asp-for="Input.Gender" class="form-label"></label>
                 <select asp-for="Input.Gender" class="form-control" >
@@ -72,12 +73,11 @@
               <div class="form-floating">
                  <label asp-for="Input.RegisterDate" class="form-label"></label>
                 <input asp-for="Input.RegisterDate" class="form-control" disabled />
-              
             </div>
+
             <div class="form-floating">
                   <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <input asp-for="Input.PhoneNumber" class="form-control" />
-              
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>

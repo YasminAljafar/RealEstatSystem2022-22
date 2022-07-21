@@ -4,6 +4,6 @@ namespace RealEstateSystem2022.Helpers
 {
     public static class GenericVariables
     {
-        public static ApplicationUser CurrentUser { get; set; }
+        public static int CurrentUser { get; set; }
     }
 }

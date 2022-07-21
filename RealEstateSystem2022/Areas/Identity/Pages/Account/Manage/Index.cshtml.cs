@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RealEstateSystem2022.Data;
 using RealEstateSystem2022.Data.RealEstateContext;
+using RealEstateSystem2022.Helpers;
 using RealEstateSystem2022.Models;
 
 namespace RealEstateSystem2022.Areas.Identity.Pages.Account.Manage
@@ -16,14 +17,12 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-         ApplicationDbContext db;
-        
-
+         RealEstateDbContext db;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ApplicationDbContext context)
+            RealEstateDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -78,7 +77,7 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            public UserType UserType1 { get; set; } 
+            public UserType UserType { get; set; } 
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -86,33 +85,20 @@ namespace RealEstateSystem2022.Areas.Identity.Pages.Account.Manage
             
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+           
             Username = userName;
 
-            //var applicationUser = new ApplicationUser
-            //{
-            //    FirstName = Input.FirstName,
-            //    LastName = Input.LastName,
-            //    Description = Input.Description,
-            //    Activ = Input.Active,
-            //    RegisterDate = Input.RegisterDate,
-            //    Gender = Input.Gender,
-            //    birthday = Input.Birthday,
-            //    Image = Input.Image,
-            //    Country = Input.Country,
-            //    City = Input.City,
-            //    UserType = Input.UserType1
-            //};
-
-            //db.Add(applicationUser);
-            //db.SaveChanges();
-
+            var currentuser = db.User.FirstOrDefault(User => User.Id == GenericVariables.CurrentUser);
             Input = new InputModel
             {
                 UserName = userName,
                 PhoneNumber = phoneNumber,
-                //FirstName=firstname
-
+                FirstName=currentuser.FirstName,
+                LastName=currentuser.LastName,
+                Gender = currentuser.Gender,
+                Country = currentuser.Country,  
+                City = currentuser.City,    
+                UserType=currentuser.UserType,
             };
 
         }

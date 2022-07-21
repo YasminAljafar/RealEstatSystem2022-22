@@ -9,10 +9,6 @@ namespace RealEstateSystem2022.Models
     {
         public int Id { get; set; }
 
-        //[Required, Maxlength(50)]
-        //public string UserName { get; set; }
-
-
         [Required, Maxlength(50)]
         public string FirstName { get; set; }
 
@@ -42,6 +38,6 @@ namespace RealEstateSystem2022.Models
         public UserType UserType { get; set; }
         public List<Advertising> Advertisings { get; set; }
 
-
+      
     }
 }

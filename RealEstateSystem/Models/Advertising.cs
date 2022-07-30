@@ -21,7 +21,7 @@ namespace RealEstateSystem.Models
         //[Required(ErrorMessage = "{0} is Required")]
         //public bool Status { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser User { get; set; }
 
     }

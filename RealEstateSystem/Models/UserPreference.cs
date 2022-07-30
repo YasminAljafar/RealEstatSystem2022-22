@@ -10,6 +10,6 @@ namespace RealEstateSystem.Models
         public int PropertyId { get; set; }
 
         [ForeignKey("ApplicationUserId")]
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
     }
 }

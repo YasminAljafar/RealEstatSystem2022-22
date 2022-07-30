@@ -1,5 +1,4 @@
-﻿@model IEnumerable<RealEstateSystem.Models.Advertising>
-
+﻿@model IEnumerable<RealEstateSystem.ViewModels.AdvertisigViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +7,7 @@
 <h1 style="margin-top:100px;">Index</h1>
 
 <p>
-    <a asp-action="Create" >Create New</a>
+    <a asp-action="Create" class="btn btn-primary"  style="float:right" >Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -25,17 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PublishDate)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.ExpiryDate)
-            </th>
+      
             <th>
-                @Html.DisplayNameFor(model => model.Count)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUserId)
+                @Html.DisplayNameFor(model => model.ApplicationUserName)
             </th>
             <th></th>
         </tr>
@@ -44,7 +35,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-               <img src="~/Uploads/Advertisings/@item.ImageURL" style="width=64px;" class="img-thumbnail"/>
+               <img src="~/Uploads/Advertisings/@item.ImageURL" style="width:64px;" class="img-thumbnail"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -55,22 +46,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PublishDate)
             </td>
-          @*  <td>
-                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" class="btn btn-secondary" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger"  asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

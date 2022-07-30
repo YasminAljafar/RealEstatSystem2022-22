@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RealEstateSystem.Data;
 using RealEstateSystem.Models;
-
+using RealEstateSystem.Utalities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,8 +42,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     //options.User.RequireUniqueEmail = false;
 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddClaimsPrincipalFactory<MyUserClaimsPrincipalFactory>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+                
 
 builder.Services.AddControllersWithViews();
 

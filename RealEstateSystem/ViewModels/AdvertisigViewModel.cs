@@ -13,16 +13,12 @@ namespace RealEstateSystem.ViewModels
         [Required(ErrorMessage = "{0} is Required")]
         [MaxLength(1000)]
         public string Description { get; set; }
-
         public DateTime PublishDate { get; set; }
-        public DateTime ExpiryDate { get; set; }
-
-        public bool Status { get; set; }
-        public int Count { get; set; }
-
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
+        public string ApplicationUserName { get; set; }
 
         public IFormFile ImageFile { get; set; }
-       
+        public string ImageURL { get; set; }
+
     }
 }

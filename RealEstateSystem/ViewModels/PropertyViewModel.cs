@@ -11,18 +11,17 @@ namespace RealEstateSystem.ViewModels
         [Required(ErrorMessage = "{0} is Required")]
         [DisplayName("Title")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "{0} is Required")]
         public decimal Price { get; set; }
-        [Required(ErrorMessage = "{0} is Required")]
-        public decimal Position { get; set; }
-        //    public bool IsPuplish { get; set; }
+
         [Required(ErrorMessage = "{0} is Required")]
         public decimal Space { get; set; }
-        [Required(ErrorMessage = "{0} is Required")]
-        public int Age { get; set; }
+
+
         [Required(ErrorMessage = "{0} is Required")]
         public string Description { get; set; }
-        //public decimal MeterPrice { get; set; }
+        
         [Display(Name = "District")]
         public int DistrictId { get; set; }
         public IEnumerable<District> Districts { get; set; }
@@ -39,9 +38,11 @@ namespace RealEstateSystem.ViewModels
         [Display(Name = "Property Type")]
         public int PropertyTypeId { get; set; }
         public IEnumerable<PropertyType> PropertyTypes { get; set; }
+
         [Display(Name = "Property Status")]
         public int PropertyStatusId { get; set; }
         public IEnumerable<PropertyStatus> PropertyStatuses { get; set; }
+
         [Display(Name = "Operation Type")]
         public int OperationTypeId { get; set; }
         public IEnumerable<OperationType> OperationTypes { get; set; }
@@ -55,10 +56,6 @@ namespace RealEstateSystem.ViewModels
         public ICollection<ApplicationUser> Users { get; set; }
 
         public List<PropertyUser> PropertyUsers { get; set; }
-
-        //هل الارض مشجرة؟
-        //[Required(ErrorMessage = "{0} is Required")]
-        //public bool IsTimberLand { get; set; }
 
 
     }

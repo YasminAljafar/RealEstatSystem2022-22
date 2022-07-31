@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealEstateSystem.Data;
 using RealEstateSystem.Models;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace RealEstateSystem.Controllers
 {
+    [Authorize/*(Roles = "User")*/]
     public class PropertiesController : Controller
     {
 
@@ -55,13 +57,10 @@ namespace RealEstateSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PropertyViewModel model)
         {
-
-
             if (ModelState.IsValid)
             {
                 Property property = new Property()
                 {
-                    Commerial=model.Commerial,
                     Description = model.Description,
                     DistrictId = model.DistrictId,
                     Name =model.Name,
@@ -88,38 +87,25 @@ namespace RealEstateSystem.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-
             var property = await _db.Properties.FindAsync(id);
 
             if (property == null)
                 return NotFound();
-
-
-
             var ViewModel = new PropertyViewModel
             {
                 Id = id,
-                //Age = property.Age,
-                Commerial = property.Commerial,
                 Description = property.Description,
-                //DistrictId = property.DistrictId,
-                //IsPuplish = property.IsPuplish,
-                //MeterPrice = property.MeterPrice,
                 Name = property.Name,
                 OperationTypeId = property.OperationTypeId,
-                //Position = property.Position,
                 Price = property.Price,
                 PropertyStatusId = property.PropertyStatusId,
                 PropertyTypeId = property.PropertyTypeId,
                 Space = property.Space,
-            //    propertyImages = property.propertyImages,
-                
-
-                //Districts = await _db.Districts.ToListAsync(),
                 PropertyTypes = await _db.PropertyTypes.ToListAsync(),
                 PropertyStatuses = await _db.PropertyStatuses.ToListAsync(),
                 OperationTypes = await _db.OperationTypes.ToListAsync(),
             };
+
             return View(ViewModel);
         }
 

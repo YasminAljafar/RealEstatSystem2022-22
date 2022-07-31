@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using RealEstateSystem.Data;
 using RealEstateSystem.Models;
 
 namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
@@ -14,13 +17,17 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _db;
+
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
         public string Username { get; set; }
@@ -30,30 +37,81 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         public InputModel Input { get; set; }
+        public IEnumerable<UserType> userTypes { get; set; }
+
 
         public class InputModel
         {
+
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Description")]
+            public string Description { get; set; }
+
+            [Display(Name = "Country")]
+            public string Country { get; set; }
+
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Display(Name = "Birthday")]
+            public DateTime Birthday { get; set; }
+
+            [Display(Name = "Gender")]
+            public bool Gender { get; set; }
+
+            //[Display(Name = "Active")]
+            //public bool Active { get; set; }
+
+            //[Display(Name = "RegisterDate ")]
+            //public DateTime RegisterDate { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Image")]
+            public byte[] Image { get; set; }
+
+            public int usertype { get; set; }
+            public UserType UserType { get; set; }
+
+          
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+       
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Description = user.Description,
+                Country = user.Country,
+                City = user.City,
+                PhoneNumber = phoneNumber,
+                Gender = user.Gender,
+                Birthday = user.birthday,
+                UserType = user.UserType,
+                Image=user.Image,
+
+
             };
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            userTypes = await _db.UserTypes.ToListAsync();
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -66,6 +124,7 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+          userTypes = await _db.UserTypes.ToListAsync();
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -76,8 +135,39 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+             var firstname=user.FirstName;
+            var lastname=user.LastName;
+           var description=user.Description;
+            var country=user.Country;
+            var city=user.City;
+            var gender=user.Gender;
+            var birthday=user.birthday;
+            var userType=user.UserType;
+           
+
+            if (Input.FirstName != firstname ||
+               Input.LastName != lastname||
+               Input.Description != description ||
+               Input.Country != country ||
+               Input.City != city ||
+               Input.Gender != gender ||
+               Input.Birthday !=birthday ||
+               Input.UserType != userType )
+            {
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Description = Input.Description;
+                user.Country = Input.Country;
+                user.City = Input.City;
+                user.Gender = Input.Gender;
+                user.birthday=Input.Birthday;
+               
+              //  user.UserType = userTypes.Where(x => x.Id == Input.usertype).FirstOrDefault();
+                await _userManager.UpdateAsync(user);
+
+            }
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -86,6 +176,17 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+            if(Request.Form.Files.Count>0)
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+
+                using (var dataStream =new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    user.Image=dataStream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.RefreshSignInAsync(user);

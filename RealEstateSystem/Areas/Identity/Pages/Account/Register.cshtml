@@ -26,10 +26,7 @@
                     <div class="form-floating" style="margin-bottom:20px">
                         <select asp-for="Input.UserType" class="form-control"
                                 asp-items="@(new SelectList(Model.userTypes,"Id","Name"))">
-                            >
                             <option selected disabled> Select User Type</option>
-                            @* <option value="Owner OR Agent"> Owner OR Agent</option>
-                                <option value="Admin" > Admin</option>*@
                         </select>
                     </div>
 

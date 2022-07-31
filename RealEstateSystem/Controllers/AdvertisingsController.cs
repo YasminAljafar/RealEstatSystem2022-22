@@ -18,6 +18,7 @@ using RealEstateSystem.ViewModels;
 
 namespace RealEstateSystem.Controllers
 {
+    [Authorize/*(Roles = "Admin")*/]
     public class AdvertisingsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -35,6 +36,7 @@ namespace RealEstateSystem.Controllers
         }
 
         // GET: Advertisings
+      
         public async Task<IActionResult> Index()
         {
             var ads = await _context.Advertisings.ToListAsync();
@@ -77,7 +79,7 @@ namespace RealEstateSystem.Controllers
         }
 
         // GET: Advertisings/Create
-        [Authorize]
+      
         public async Task<IActionResult> CreateAsync()
         {
             //var ss = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -97,6 +99,7 @@ namespace RealEstateSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Create(  AdvertisigViewModel advertising)
         {
             if (ModelState.IsValid)
@@ -127,6 +130,7 @@ namespace RealEstateSystem.Controllers
         }
 
         // GET: Advertisings/Edit/5
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Advertisings == null)

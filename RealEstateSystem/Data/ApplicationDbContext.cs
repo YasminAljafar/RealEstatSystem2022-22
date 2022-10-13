@@ -14,11 +14,11 @@ namespace RealEstateSystem.Data
             : base(options)
         {
         }
+        public DbSet<Governorate> Governorates { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<Advertising> Advertisings { get; set; }
-        public DbSet<Governorate> Governorates { get; set; }
-        public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Models.Property> Properties { get; set; }
         public DbSet<Commerial> Commerials { get; set; }
@@ -31,17 +31,15 @@ namespace RealEstateSystem.Data
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<PropertyUser> PropertyUsers { get; set; }
         public DbSet<UserPreference> UserPreferences { get; set; }
+        public string WebRootPath { get; internal set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        //    modelBuilder.Entity<Governorate>().HasData(
-        //       new Governorate { Id = 1, Name = "Governorate 1" });
-
-        //    modelBuilder.Entity<City>().HasData(
-        //      new City { Id = 1, Name = "City 1",});
-        //}
+            modelBuilder.Entity<Property>().Property(x => x.lat).HasPrecision(18, 10);
+            modelBuilder.Entity<Property>().Property(x => x.lng).HasPrecision(18, 10);
+        }
 
 
         // public DbSet<RealEstateSystem.ViewModels.PropertyViewModel> PropertyViewModel { get; set; } الفيو موديل ما منضيفها عال context

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RealEstateSystem.Models
@@ -7,7 +8,12 @@ namespace RealEstateSystem.Models
     {
         public int id { get; set; }
        [ Required]
-        public int Name { get; set; }
+        public string Name { get; set; }
         public List<Land> Lands { get; set; }
+
+        //public static implicit operator EarthType(List<EarthType> v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

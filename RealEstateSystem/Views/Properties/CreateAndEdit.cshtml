@@ -1,0 +1,278 @@
+﻿using RealEstateSystem.ViewModels
+@model PropertyViewModel
+
+@{
+    ViewData["Title"] = " (إدارة العقارت (إضافة - تعديل ";
+}
+
+<div class="container" dir="rtl">
+
+    <h1 style="margin-top:100px">@(Model.Id>0?"Edit":"Create")</h1>
+
+    <h4>أهلا وسهلاً بك عزيزي المستخدم</h4>
+    <hr />
+    <div class="row">
+        @Html.ValidationSummary()
+        <form asp-action="@(Model.Id>0?"Edit":"Create")" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col-md-4 ">
+                    <h3>بيانات العقار</h3>
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="CreatedBy" />
+                    <div class="form-group mt-4">
+                        <label asp-for="Name" class="control-label">الاسم:</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="OperationTypeId" class="control-label">نوع العقد:</label>
+                        <select asp-for="OperationTypeId" class="form-control" asp-items=@(new SelectList(Model.OperationTypes,"Id","Name"))>
+                            <option selected disabled value=""> اختر نوع العقد</option>
+                        </select>
+                        <span asp-validation-for="OperationTypeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="PropertyTypeId" class="control-label">نوع العقار:</label>
+                        <select asp-for="PropertyTypeId" id="PropertyTypeId" onchange=" changeDropDownList(this);" class="form-control" asp-items=@(new SelectList(Model.PropertyTypes,"Id","Name"))>
+                            <option selected disabled value=""> اختر نوع العقار</option>
+
+                        </select>
+                        <span asp-validation-for="PropertyTypeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="Price" class="control-label">السعر:</label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="Space" class="control-label">المساحة:</label>
+                        <input asp-for="Space" class="form-control" />
+                        <span asp-validation-for="Space" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="Description" class="control-label">الوصف:</label>
+                        <textarea asp-for="Description" class="form-control" style="height:100px;"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label> المحافظة:</label>
+                        <select class="form-control" id="Governorate" asp-for="GovernorateId"  asp-items=@(new SelectList(Model.Governorates,"Id","Name"))>
+                            <option selected disabled>اختر المحافظة</option>
+                        </select>
+                        <span asp-validation-for="GovernorateId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label>المدينة: </label>
+                        <select class="form-control" id="City"asp-for="CityId" asp-items=@(new SelectList(Model.Cities,"Id","Name") )>
+                            <option selected disabled>اختر المدينة</option>
+                        </select>
+                        <span asp-validation-for="CityId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label>الحي:</label>
+                        <select class="form-control" id="District" asp-for="DistrictId"  asp-items=@(new SelectList(Model.Districts,"Id","Name"))>
+                            <option selected disabled> اختر الحي</option>
+                        </select>
+                        <span asp-validation-for="DistrictId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="lat" class="control-label">خط العرض:</label>
+                        <input asp-for="lat" id="lat" class="form-control" />
+                        <span asp-validation-for="lat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="lng" class="control-label">خط الطول:</label>
+                        <input asp-for="lng" id="lng"  class="form-control" />
+                        <span asp-validation-for="lng" class="text-danger"></span>
+                    </div>
+                     <p>Mouse Location: <span id="mouse_location_id"></span></p>
+                    <div @*id="map"*@ id="map_div" class="form-group mt-4" style="width:100%; height:300px" ;></div>
+                    <div class="form-group mt-4">
+                        <label asp-for="PropertyStatusId" class="control-label">الحالة:</label>
+                        <select asp-for="PropertyStatusId" class="form-control" asp-items=@(new SelectList(Model.PropertyStatuses,"Id","Name"))>
+                            <option selected disabled value=""> اختر الحالة</option>
+                        </select>
+                        <span asp-validation-for="PropertyStatusId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="Images" class="control-label">الصور:</label>
+                        <input asp-for="Images" class="form-control" type="file" multiple>
+                        <span asp-validation-for="Images" class="text-danger"></span>
+
+                        @if (Model.propertyImages.Count > 0)
+                        {
+                            <div>
+                                @foreach (var img in Model.propertyImages)
+                                {
+                                    <img src="/Uploads/Properties/@img.imageUrl" width="70" height="70" class="img-thumbnail">
+
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+
+                </div>
+
+
+                <div id="land" class="col-md-4">
+                    <h3>بيانات الزراعي</h3>
+                    <div class="form-group mt-4">
+                        <label asp-for="Length" class="control-label">الطول:</label>
+                        <input asp-for="Length" class="form-control" />
+                        <span asp-validation-for="Length" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="Width" class="control-label">العرض:</label>
+                        <input asp-for="Width" class="form-control" />
+                        <span asp-validation-for="Width" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="EarthTypeId" class="control-label">نوع التربة:</label>
+                        <select asp-for="EarthTypeId" class="form-control" a@*sp-items=@(new SelectList(Model.EarthTypes,"Id","Name"))*@>
+                            <option value="" disabled>اختار توع التربة</option>
+                            <option value="1" selected>Earth1</option>
+                            <option value="2">Earth2</option>
+                            <option value="3">Earth3</option>
+                            <option value="4">Earth4</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل يوجد بئر مياه؟
+                            <input class="form-check-input" asp-for="WaterWell" /> @Html.DisplayNameFor(model => model.WaterWell)
+                        </label>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل الأرض مشجرة؟
+                            <input class="form-check-input" asp-for="IsTimberLand" /> @Html.DisplayNameFor(model => model.IsTimberLand)
+                        </label>
+                    </div>
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل يوجد بالقرب بئر مياه ؟
+                            <input class="form-check-input" asp-for="WaterWellAtNear" /> @Html.DisplayNameFor(model => model.WaterWellAtNear)
+                        </label>
+                    </div>
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل الأرض صالحة للبناء؟
+                            <input class="form-check-input" asp-for="LandForConstruction" /> @Html.DisplayNameFor(model => model.LandForConstruction)
+                        </label>
+                    </div>
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل الأرض صالحة للزراعة؟
+                            <input class="form-check-input" asp-for="LandIsArable" /> @Html.DisplayNameFor(model => model.LandIsArable)
+                        </label>
+                    </div>
+                    
+                    <div class="form-group mt-4" hidden>
+                        <label asp-for="PropertyId" class="control-label"></label>
+                        <select asp-for="PropertyId" class="form-control" disabled asp-items="@ViewBag.PropertyId"></select>
+
+                    </div>
+                </div>
+
+                <div id="home" class="col-md-4">
+                    <h3>بيانات السكني</h3>
+                    <div class="form-group mt-4">
+                        <label asp-for="@Model.RoomCount" class="control-label">عدد الغرف: </label>
+                        <input asp-for="@Model.RoomCount" class="form-control"  />
+                        <span asp-validation-for="@Model.RoomCount" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mt-4">
+                        <label asp-for="@Model.Floor" class="control-label">الطابق:</label>
+                        <input asp-for="@Model.Floor" class="form-control" />
+                        <span asp-validation-for="@Model.Floor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            هل  مشمس؟
+                            <input class="form-check-input" asp-for="@Model.IsSunny" /> @Html.DisplayNameFor(model => model.Home.IsSunny)
+                        </label>
+                    </div>
+                    <div class="form-group mt-4" hidden>
+                        <label asp-for="PropertyId" class="control-label"></label>
+                        <select asp-for="PropertyId" class="form-control" asp-items="@ViewBag.PropertyId"></select>
+
+                    </div>
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="حغظ" class="btn btn-primary" />|
+                    <a asp-action="Index" class="btn btn-info">الذهاب إلى قائمة العقارات</a>
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/assets/js/Cascade.js"></script>
+   @* <script>
+        function changeDropDownList(e) {
+            debugger;
+            var state = e.options[e.selectedIndex].text;
+            if (state == "زراعي") {
+                // $("#land").hide();
+                document.getElementById("land").style.visibility = "visible";
+            } else {
+                // $("#land").show();
+                document.getElementById("land").style.visibility = "hidden";
+            }
+
+            if (state == "سكني") {
+
+                document.getElementById("home").style.visibility = "visible";
+            } else {
+                document.getElementById("home").style.visibility = "hidden";
+            }
+
+            if (state == "تجاري") {
+
+                document.getElementById("home").style.visibility = "hidden";
+
+                document.getElementById("land").style.visibility = "hidden";
+            }
+
+
+        }
+       
+    </script>*@
+
+
+<!--    plugins-->
+<script src="~/lib/jquery-3.5.1.js"></script>
+<script src="~/assets/js/source_code.js"></script>
+<script src="~/assets/js/L.Control.Pan.js"></script>
+<script src="~/assets/js/L.Control.Zoomslider.js"></script>
+
+

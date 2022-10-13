@@ -45,14 +45,14 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name ="Email OR UserName")]
+            //[Display(Name ="Email OR UserName")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            //[Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
 

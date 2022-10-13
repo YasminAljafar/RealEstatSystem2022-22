@@ -9,6 +9,7 @@ namespace RealEstateSystem.Models
 
         [Required]
         public string Name { get; set; }
+        public int GovernorateId { get; set; }
         public Governorate Governorate { get; set; }
         public List<District> Districts { get; set; }
 

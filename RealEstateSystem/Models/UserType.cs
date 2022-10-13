@@ -12,5 +12,6 @@ namespace RealEstateSystem.Models
 
       
         public List<ApplicationUser> Users { get; set; }
+        public List<Property> Properties { get; set; }
     }
 }

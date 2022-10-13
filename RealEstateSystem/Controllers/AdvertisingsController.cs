@@ -36,10 +36,10 @@ namespace RealEstateSystem.Controllers
         }
 
         // GET: Advertisings
-      
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var ads = await _context.Advertisings.ToListAsync();
+            var ads = await _context.Advertisings.OrderByDescending(x=>x.PublishDate).ToListAsync();
             var resList = new List<AdvertisigViewModel>();
             AdvertisigViewModel adVM;
             ads.ForEach(a =>
@@ -57,6 +57,51 @@ namespace RealEstateSystem.Controllers
                 resList.Add(adVM);
             });
               return View(resList);
+        }
+        public async Task<IActionResult> Index1()
+        {
+            var ads = await _context.Advertisings.OrderByDescending(x => x.PublishDate).ToListAsync();
+            var resList = new List<AdvertisigViewModel>();
+            AdvertisigViewModel adVM;
+            ads.ForEach(a =>
+            {
+                adVM = new AdvertisigViewModel
+                {
+                    Id = a.Id,
+                    ImageURL = a.ImageURL,
+                    Title = a.Title,
+                    Description = a.Description,
+                    PublishDate = a.PublishDate,
+                    ApplicationUserId = a.ApplicationUserId,
+                    ApplicationUserName = _userManager.Users.Where(x => x.Id == a.ApplicationUserId).Select(x => x.UserName).FirstOrDefault()
+                };
+                resList.Add(adVM);
+            });
+            return View(resList);
+        }
+        public async Task<IActionResult> Search(string term)
+        {
+            var model = _context.Advertisings.Where(m => m.Title.Contains(term))
+                 .Select(m => new Advertising
+                 {
+                     
+
+                     Title = m.Title,
+                     PublishDate = m.PublishDate,
+                     Description = m.Description,
+                     ImageURL = m.ImageURL,
+                     //ApplicationUserId = m.ApplicationUserId,
+                     //ApplicationUserName = _userManager.Users.Where(x => x.Id == m.ApplicationUserId).Select(x => x.UserName).FirstOrDefault()
+
+
+
+                 });
+          
+
+
+            return View(model);
+          
+
         }
 
         // GET: Advertisings/Details/5

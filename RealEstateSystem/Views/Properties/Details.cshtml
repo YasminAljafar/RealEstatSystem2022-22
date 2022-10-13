@@ -1,0 +1,225 @@
+﻿@model RealEstateSystem.Models.Property
+@*@model RealEstateSystem.Models.Land
+@model RealEstateSystem.ViewModels.PropertyViewModel*@
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" dir="rtl">
+    <h1 style="margin-top:150px"> أهلا وسهلا بك عزيزي المستخدم في تفاصيل العقار </h1>
+
+    <div>
+        <h4> @Html.DisplayFor(model => model.Name)</h4>
+        <hr />
+        <dl class="row">
+            <div class="col-md-4">
+                <dt class="col-mt-4">
+                    اسم العقار:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-mt-4">
+                    سعر العقار:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-mt-4">
+                    @*@Html.DisplayNameFor(model => model.Space)*@
+                    مساحة العقار:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Space)
+                </dd>
+                <dt class="col-mt-4">
+                    @* @Html.DisplayNameFor(model => model.Description)*@
+                    وصف العقار:
+                </dt>
+                <dd class="col-mt-40">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    المحافظة:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.District.City.Governorate.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    المدينة:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.District.City.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    الحي:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.District.Name)
+                </dd>
+
+                <dt class="col-mt-4">
+                    نوع العقار:
+                </dt>
+                <dd class="col-mt-4" id="type">
+                    @Html.DisplayFor(model => model.PopertType.Name)
+                </dd>
+                <dt class="col-mt-4">
+
+                    حالة العقار:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.PropertyStatus.Name)
+                </dd>
+                <dt class="col-mt-4">
+                    نوع العقد:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OperationType.Name)
+                </dd>
+
+                <dt class="col-sm-2 mt-4">
+                    الصور:
+                </dt>
+                <dd class="col-sm-10  mt-4">
+                    <div>
+                        @foreach (var img in Model.propertyImages)
+                        {
+                            <img src="/Uploads/Properties/@img.imageUrl" width="70" height="70" class="img-thumbnail">
+
+                        }
+                    </div>
+                    @*                    <img src="~/Uploads/Properties/@Model.propertyImages" style="width:164px;" class="img-thumbnail" />
+                    *@
+                </dd>
+            </div>
+
+            <div class="col-md-4" id="land">
+                <dt class="col-mt-4">
+                    @* @Html.DisplayNameFor(model => model.Land.IsTimberLand)*@
+                    هل الأرض مشجرة؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.IsTimberLand)
+                </dd>
+                <dt class="col-mt-4">
+
+                    الطول:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.Length)
+                </dd>
+                <dt class="col-mt-4">
+                    @*@Html.DisplayNameFor(model => model.Land.Width)*@
+                    العرض:
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.Width)
+                </dd>
+                <dt class="col-mt-4">
+                    @*  @Html.DisplayNameFor(model => model.Land.WaterWell)*@
+                    هل يوجد  بئر مياه؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.WaterWell)
+                </dd>
+                <dt class="col-mt-4">
+                    @* @Html.DisplayNameFor(model => model.Land.WaterWellAtNear)*@
+                    هل يوجد بالقرب من الأرض بئر مياه؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.WaterWellAtNear)
+                </dd>
+                <dt class="col-mt-4">
+                    @* @Html.DisplayNameFor(model => model.Land.LandForConstruction)*@
+                    هل الأرض صالحة للبناء؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.LandForConstruction)
+                </dd>
+                <dt class="col-mt-4">
+                    @*@Html.DisplayNameFor(model => model.Land.LandIsArable)*@
+                    هل الأرض صالحة للزراعة؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.LandIsArable)
+                </dd>
+                <dt class="col-mt-4">
+                    @* @Html.DisplayNameFor(model => model.Land.EarthType)*@
+                    نوع التربة؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Land.EarthType.id)
+                </dd>
+                @* <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Land.Property)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+                </dd>*@
+            </div>
+
+            <div class="col-md-4" id="home">
+                <dt class="col-mt-4">
+                    عدد الغرف:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Home.RoomCount)
+                </dd>
+                <dt class="col-mt-4">
+                    أي طابق؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Home.Floor)
+                </dd>
+             
+                <dt class="col-mt-4">
+                    هل مشمس؟
+                </dt>
+                <dd class="col-mt-4">
+                    @Html.DisplayFor(model => model.Home.IsSunny)
+                </dd>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Home.PropertyId)
+                </dd>
+
+            </div>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">تعديل</a> |
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">حذف</a> |
+        <a asp-action="Index" class="btn btn-info">الذهاب إلى القائمة</a>
+    </div>
+</div>
+
+<script>
+    function getTypeValue() {
+        debugger;
+        var state = document.getElementById("type")
+        if (state == "زراعي") {
+            // $("#land").hide();
+            document.getElementById("land").style.visibility = "visible";
+        } else {
+            // $("#land").show();
+            document.getElementById("land").style.visibility = "hidden";
+        }
+
+        if (state == "سكني") {
+
+            document.getElementById("home").style.visibility = "visible";
+        } else {
+            document.getElementById("home").style.visibility = "hidden";
+        }
+
+        if (state == "تجاري") {
+
+            document.getElementById("home").style.visibility = "hidden";
+
+            document.getElementById("land").style.visibility = "hidden";
+        }
+
+
+    }
+</script>

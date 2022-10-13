@@ -1,123 +1,311 @@
-﻿@model             IEnumerable<RealEstateSystem.Models.Property>
+﻿@*@model IEnumerable<RealEstateSystem.Models.Property>*@
+@*using RealEstateSystem.ViewModels
+@model PropertyViewModel*@
+
+@using RealEstateSystem.ViewModels
+@model HomeVM
+
+@inject RealEstateSystem.Data.ApplicationDbContext _db
+@*@using RealEstateSystem.ViewModels+
+PropertyViewModel*@
 @{
     ViewData["Title"] = "Properties";
+    var propertiesCount = _db.Properties.Count();
+    var pageNumbers = Math.Ceiling((decimal) (Decimal.Divide(propertiesCount, 12) ));
 }
-<div class="container">
-<div class="mt-4">
-    <h2> Properties</h2>
-    <hr />
-     <a class="btn btn-primary" asp-action="Create" style="margin-top:100px;">Add New Property</a>
-    @if (!Model.Any())
-    {
-        <div class="alert alert-danger" role="alert" style="margin-top:75px;">  No Properties Found </div>
-    }
-    else
-    {
-    
-             <!-- ======= Property Grid ======= -->
-    <section class="property-grid grid">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="grid-option">
-              <form>
-                <select class="custom-select">
-                  <option selected>All</option>
-                  <option value="1">New to Old</option>
-                  <option value="2">For Rent</option>
-                  <option value="3">For Sale</option>
-                </select>
-              </form>
-            </div>
-          </div>
-          
-        @foreach(var property in Model)
-        {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="container" dir="rtl">
+    <div class="mt-4">
+        <h2 style="margin-top:140px;"> أهلا بكم في عقارات HOME.com</h2>
+        <hr />
+        <div class="row mt-4">
+            <div class="col-md-6 ">
+                <a class="btn btn-primary" asp-action="Index1"> قائمة العقارات   </a>
+                <a class="btn btn-success" asp-action="Create">إضافة عقار جديد</a>
 
-          <div class="col-md-4">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img src="assets/img/property-10.jpg" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="#">204 Mount
-                        <br /> Olive Road Two</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">rent | $ 12.000</span>
+                <form class="form-a" asp-controller="Properties" asp-action="Search">
+                    <div class="row mt-4">
+                        <div class="input-group mb-3 input-group-lg">
+                            <input type="text" class="form-control " name="term" placeholder="مثال: بيت أو آجار أو بيع" aria-label="" aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-success btn-lg" type="submit">بحث</button>
+                            </div>
+                        </div>
                     </div>
-                    <a href="property-single.html" class="link-a">Click here to view
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                </form>
             </div>
-          </div>
-      }
+            <div class="col-md-6  mt-2">
+                <div class="row mt-4">
+                    <div class="accordion mt-4" id="accordionExample" style="margin-bottom:30px;">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    فلترة
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <!--/ Form Search Star /-->
+                                    <div @*class="box-collapse"*@>
 
-        <div class="row">
-          <div class="col-sm-12">
-            <nav class="pagination-a">
-              <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">
-                    <span class="bi bi-chevron-left"></span>
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item next">
-                  <a class="page-link" href="#">
-                    <span class="bi bi-chevron-right"></span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+                                        <form class="form-a" asp-controller="Properties" asp-action="Index" id="filter-form">
+                                            <input id="PageNumber" hidden asp-for="FilterParams.PageNumber" />
+                                            <input id="OrderType" hidden asp-for="FilterParams.OrderType" />
+                                            <div class="row">
+
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="Type">نوع العقار</label>
+                                                        <select class="form-control form-select form-control-a" asp-for="FilterParams.PropertyType" name="FilterParams.PropertyType" id="PropertyType" asp-items=@(new SelectList(Model.PropertyTypes,"Id","Name"))>
+                                                            <option disabled selected>اختر</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="city">نوع العملية</label>
+                                                        <select class="form-control form-select form-control-a" asp-for="FilterParams.OperationType" name="FilterParams.OperationType" id="OperationType" asp-items=@(new SelectList(Model.OperationTypes,"Id","Name"))>
+                                                            <option disabled selected>اختر</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="bedrooms">المدينة</label>
+                                                        <select class="form-control form-select form-control-a" name="FilterParams.City" asp-for="FilterParams.City" id="City" asp-items=@(new SelectList(Model.Cities,"Id","Name"))>
+                                                            <option disabled selected>اختر</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="garages">الحي</label>
+                                                        <select class="form-control form-select form-control-a" name="FilterParams.District" asp-for="FilterParams.District" id="District" asp-items=@(new SelectList(Model.Districts,"Id","Name"))>
+                                                            <option disabled selected>اختر</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="roomcount">عدد الغرف</label>
+                                                        <select class="form-control form-select form-control-a" asp-for="FilterParams.roomcount" name="FilterParams.roomcount" id="roomcount">
+                                                            <option disabled selected>اختر</option>
+
+                                                            <option value="">00</option>
+                                                            <option value="1">01</option>
+                                                            <option value="2">02</option>
+                                                            <option value="3">03</option>
+                                                            <option value="4">04</option>
+                                                            <option value="5">05</option>
+                                                            <option value="more">أكثر</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-group mt-3">
+                                                        <label class="pb-2" for="price">أقل سعر</label>
+                                                        <select class="form-control form-select form-control-a" asp-for="FilterParams.price" name="FilterParams.price" id="price">
+                                                            <option disabled selected>اختر</option>
+                                                            <option value="30">$30.000</option>
+                                                            <option value="50">$50.000</option>
+                                                            <option value="75"> $75.000</option>
+                                                            <option value="100">$100.000</option>
+                                                            <option value="150">$150.000</option>
+                                                            <option value="200">$200.000</option>
+                                                            <option value="400">$400.00</option>
+                                                            <option value="600">$600.000</option>
+                                                            <option value="1000">$1000.000</option>
+                                                            <option value="50,000">$50,000</option>
+                                                            <option value="100,000">$100,000</option>
+                                                            <option value="200,000">$200,000</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-success">بحث</button>
+                                                    <button type="reset" class="btn btn-default">إعادة تهيئة الفلتر</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- End Property Search Section -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
         </div>
 
 
-        
-      </div>
-    </section>
-    <!-- End Property Grid Single-->
-        
+
+
+        @if (!Model.Properties.Any())
+        {
+            <div class="alert alert-danger" role="alert" style="margin-top:75px;">  No Properties Found </div>
+        }
+        else
+        {
+
+            <!-- ======= Property Grid ======= -->
+            <section class="property-grid grid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="grid-option">
+                                <form>
+                                    <select asp-for="FilterParams.OrderType" class="custom-select form-control" onchange="orderChanged(event)">
+                                        <option selected value="0" >ترتيب افتراضي</option>
+                                        <option value="1">الأحدث أولاً</option>
+                                        <option value="2">أقل سعر أولاً</option>
+                                        @* <option value="3">للبيع</option>*@
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+
+                        @foreach (var property in Model.Properties )
+                        {
+                       
+                            
+                            <div class="col-md-4">
+                                <div class="card-box-a card-shadow">
+                                    <div class="img-box-a">
+                                        @{
+                                            var image = "";
+                                            if (property.propertyImages.Any())
+                                            {
+                                                image = $"/Uploads/Properties/{property.propertyImages[0].imageUrl}";
+                                            }
+                                            else
+                                            {
+                                                image = "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo=";
+                                            }
+                                        }
+                                        <img src="@image" class="img-a img-fluid" />
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="card-overlay-a-content">
+                                            <div class="card-header-a">
+                                                <h2 class="card-title-a">
+                                                    <a asp-route-id="@property.Id" asp-action="SingleProperty">
+                                                        @property.Name
+                                                    </a>
+                                                </h2>
+                                                <p style="color:white;"> @* @property.Description*@</p>
+                                            </div>
+                                            <div class="card-body-a">
+                                                <div class="price-box d-flex">
+                                                    <span class="price-a">@property.OperationType.Name| $ @property.Price </span>
+                                                </div>
+                                                <a asp-route-id="@property.Id" asp-action="SingleProperty" class="link-a">
+                                                    لمعرفة المزيد إضغط هنا
+                                                    <span class="bi bi-chevron-left"></span>
+                                                    <p>@property.datetime</p>
+                                                </a>
+                                            </div>
+                                            <div class="card-footer-a">
+                                                <ul class="card-info d-flex justify-content-around">
+                                                    <li>
+                                                        <h4 class="card-info-title" style="color:white;">المساحة</h4>
+                                                        <span dir="ltr">
+                                                            @property.Space
+                                                            <sup>2</sup>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <h4 class="card-info-title" style="color:white;">الحالة</h4>
+                                                        <span>@*@(property.Land!=null?property.Land.Width:0)*@ @property.PropertyStatus.Name</span>
+                                                    </li>
+                                                    <li>
+                                                        <h4 class="card-info-title" style="color:white;">عدد الغرف</h4>
+                                                        <span>@(property.Home!=null?property.Home.RoomCount:0)</span>
+                                                    </li>
+                                                    <li>
+                                                        <h4 class="card-info-title" style="color:white;">الصور</h4>
+                                                        <span>@property.propertyImages.Count()  </span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <nav class="pagination-a">
+                                    <ul class="pagination justify-content-end">
+                                        @if (Model.FilterParams.PageNumber > 1)
+                                        {
+                                            <li class="page-item ">
+                                                <a class="page-link" onclick="ToPage(`@(Model.FilterParams.PageNumber-1)`)" href="javascript:void(0)" tabindex="-1">
+                                                    <span class="bi bi-chevron-right"></span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @for (int i = 0; i < pageNumbers; i++)
+                                        {
+                                            <li class="page-item @(Model.FilterParams.PageNumber==(i+1)?"active":"")">
+                                                <a class="page-link" onclick="ToPage('@(i+1)')" href="javascript:void(0)">@(i+1)</a>
+                                            </li>
+                                        }
+
+                                        @*<li class="page-item active">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">3</a>
+                                        </li>*@
+                                        @if (Model.FilterParams.PageNumber < pageNumbers)
+                                        {
+                                            <li class="page-item next">
+                                                <a class="page-link" onclick="ToPage(`@(Model.FilterParams.PageNumber+1)`)" href="javascript:void(0)" >
+                                                    <span class="bi bi-chevron-left"></span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </section>
+            <!-- End Property Grid Single-->
+        }
+
+    </div>
+</div>
+
+<script>
+    function ToPage(pageNumber) {
+        debugger;
+        $("#PageNumber").val(pageNumber);
+        $("#filter-form").submit();
     }
 
-</div>
-</div>
+
+    function orderChanged(e){
+         $("#OrderType").val(e.target.selectedIndex);
+          $("#filter-form").submit();
+
+        debugger;
+    }
+</script>
+   @* <script src="~/assets/js/Cascade1.js"></script>*@

@@ -4,108 +4,118 @@
     ViewData["Title"] = "Register";
 }
 <h1>@ViewData["Title"]</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-<div class="container" style="margin-top:75px ; margin-bottom:50px">
+<div class="container" style="margin-top:100px ; margin-bottom:50px" dir="rtl">
     <div class="col-12">
         <div class="row">
-            <div class="col-md-4">
+            
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <h3>Create a new account.</h3>
+                    <h3>إنشاء حساب جديد</h3>
                     <hr />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Input.FirstName" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
-                        <input asp-for="Input.FirstName" class="form-control" />
-                    </div>
-                    <label asp-for="Input.LastName" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
-                        <input asp-for="Input.LastName" class="form-control" />
-                    </div>
-                    <label asp-for="Input.UserType" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
-                        <select asp-for="Input.UserType" class="form-control"
-                                asp-items="@(new SelectList(Model.userTypes,"Id","Name"))">
-                            <option selected disabled> Select User Type</option>
-                        </select>
-                    </div>
+                    <div class="row">
+                    <div class="col-md-4">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label asp-for="Input.FirstName" class="form-label">الاسم الأول</label>
+                        <div class="form-floating" style="margin-bottom:10px">
+                            <input asp-for="Input.FirstName" class="form-control input-sm"  style="height:40px" />
+                        </div>
+                        <label asp-for="Input.LastName" class="form-label">الاسم الثاني</label>
+                        <div class="form-floating" style="margin-bottom:10px">
+                            <input asp-for="Input.LastName" class="form-control" style="height:40px" />
+                        </div>
+                        <label asp-for="Input.UserType" class="form-label">نوع المستخدم</label>
+                        <div class="form-group mt-2" style="margin-bottom:10px;">
+                            <select asp-for="Input.UserType" class="form-control"
+                                    asp-items="@(new SelectList(Model.userTypes,"Id","Name"))">
+                                <option selected disabled  value="" > اختر نوع المستخدم</option>
+                            </select>
+                        </div>
 
-                    <label asp-for="Input.Country" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
-                        <input asp-for="Input.Country" class="form-control" />
-                    </div>
+                        <label asp-for="Input.Country" class="form-label">البلد</label>
+                        <div class="form-floating" style="margin-bottom:10px">
+                           @* <select asp-for="Input.Country" class="form-control"  style="height:40px"
+                                    asp-items="@(new SelectList(Model.,"Id","Name"))">
+                                <option selected disabled  style="height:40px"> اختر</option>
+                            </select>*@
+                            <input asp-for="Input.Country" class="form-control" style="height:40px"/>
+                        </div>
 
 
-                    <label asp-for="Input.City" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
+                        <label asp-for="Input.City" class="form-label">المدينة</label>
+                        <div class="form-floating" style="margin-bottom:10px">
 
-                        <input asp-for="Input.City" class="form-control" />
-                    </div>
-
-
-                    <label asp-for="Input.Gender" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
-
-                        <select asp-for="Input.Gender" class="form-control">
-                            <option selected disabled> Select Your Gender</option>
-                            <option value="false">Male</option>
-                            <option value="true">Female</option>
-                        </select>
+                            <input asp-for="Input.City" class="form-control" style="height:40px" />
+                        </div>
                     </div>
 
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
+                    <div class="col-md-4">
 
-                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <label asp-for="Input.Gender" class="form-label">الجنس</label>
+                        <div class="form-group mt-2" style="margin-bottom:10px; ">
+
+                            <select asp-for="Input.Gender" class="form-control" >
+                                <option selected disabled > اختر </option>
+                                <option value="false">ذكر</option>
+                                <option value="true">أنثى</option>
+                            </select>
+                        </div>
+
+                        <label asp-for="Input.Email" class="form-label">الايميل</label>
+                        <div class="form-floating" style="margin-bottom:10px">
+
+                            <input asp-for="Input.Email" class="form-control" style="height:40px" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Password" class="form-label">كلمة المرور</label>
+                        <div class="form-floating" style="margin-bottom:10px">
+
+                            <input asp-for="Input.Password " style="height:40px" class="form-control" autocomplete="new-password" aria-required="true" />
+
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.ConfirmPassword" class="form-label">تأكيد كلمة المرور</label>
+
+                        <div class="form-floating" style="margin-bottom:10px">
+                            <input asp-for="Input.ConfirmPassword" style="height:40px" class="form-control" autocomplete="new-password" aria-required="true" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            <label></label>
+                        </div>
+                        <button id="registerSubmit" type="submit"  class="w-100 btn btn-primary" style="background-color:#2eca6a; border-color:#2eca6a;  margin-top:33px;">تسجيل</button>
                     </div>
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <div class="form-floating" style="margin-bottom:20px">
 
-                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    
                     </div>
-                    <label asp-for="Input.ConfirmPassword" class="form-label"></label>
-
-                    <div class="form-floating" style="margin-bottom:20px">
-
-                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                        <label></label>
-                    </div>
-
-                    <button id="registerSubmit" type="submit" class="w-100 btn btn-primary" style="background-color:#2eca6a; border-color:#2eca6a">Register</button>
                 </form>
-            </div>
+            
             <div class="col-md-6 col-md-offset-2">
                 <section>
-                    <h3>Use another service to register.</h3>
-                    <hr />
+
+
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
                         {
-                            <div>
-                                <p>
-                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                        article
-                                        about setting up this ASP.NET application to support logging in via external services
-                                    </a>.
-                                </p>
-                            </div>
+                            //<div>
+                            //    <p>
+                            //        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                            //            article
+                            //            about setting up this ASP.NET application to support logging in via external services
+                            //        </a>.
+                            //    </p>
+                            //</div>
                         }
                         else
                         {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                <div>
-                                    <p>
-                                        @foreach (var provider in Model.ExternalLogins)
+                                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                                <div>
+                                                    <p>
+                                                        @foreach (var provider in Model.ExternalLogins)
                                         {
-                                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                         }
-                                    </p>
-                                </div>
-                            </form>
+                                                    </p>
+                                                </div>
+                                            </form>
                         }
                     }
                 </section>
@@ -116,5 +126,5 @@
 
 
 @section Scripts {
-<partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }

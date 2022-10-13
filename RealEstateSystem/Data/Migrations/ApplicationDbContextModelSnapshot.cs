@@ -170,6 +170,21 @@ namespace RealEstateSystem.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PropertyUserType", b =>
+                {
+                    b.Property<int>("PropertiesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PropertiesId", "UserTypeId");
+
+                    b.HasIndex("UserTypeId");
+
+                    b.ToTable("PropertyUserType");
+                });
+
             modelBuilder.Entity("RealEstateSystem.Models.Advertising", b =>
                 {
                     b.Property<int>("Id")
@@ -313,7 +328,7 @@ namespace RealEstateSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("GovernorateId")
+                    b.Property<int>("GovernorateId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -385,8 +400,9 @@ namespace RealEstateSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -511,15 +527,16 @@ namespace RealEstateSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DistrictId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OperationTypeId")
@@ -536,6 +553,20 @@ namespace RealEstateSystem.Data.Migrations
 
                     b.Property<decimal>("Space")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("datetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("lat")
+                        .HasPrecision(18, 10)
+                        .HasColumnType("decimal(18,10)");
+
+                    b.Property<decimal>("lng")
+                        .HasPrecision(18, 10)
+                        .HasColumnType("decimal(18,10)");
 
                     b.HasKey("Id");
 
@@ -559,7 +590,6 @@ namespace RealEstateSystem.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyId")
@@ -744,6 +774,21 @@ namespace RealEstateSystem.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PropertyUserType", b =>
+                {
+                    b.HasOne("RealEstateSystem.Models.Property", null)
+                        .WithMany()
+                        .HasForeignKey("PropertiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealEstateSystem.Models.UserType", null)
+                        .WithMany()
+                        .HasForeignKey("UserTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RealEstateSystem.Models.Advertising", b =>
                 {
                     b.HasOne("RealEstateSystem.Models.ApplicationUser", "User")
@@ -768,7 +813,9 @@ namespace RealEstateSystem.Data.Migrations
                 {
                     b.HasOne("RealEstateSystem.Models.Governorate", "Governorate")
                         .WithMany("Cities")
-                        .HasForeignKey("GovernorateId");
+                        .HasForeignKey("GovernorateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Governorate");
                 });

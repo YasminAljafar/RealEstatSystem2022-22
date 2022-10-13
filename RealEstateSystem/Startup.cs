@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
                    builder.Configuration.GetConnectionString("DefaultConnection")));
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //               options.UseSqlServer(
-//                   builder.Configuration.GetConnectionString("DefaultConnection")));
+//                   builder.Configuration.GetConnectionString("SqlserverConnection")));
 
 
 
@@ -45,7 +45,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 .AddClaimsPrincipalFactory<MyUserClaimsPrincipalFactory>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
-                
+
 
 builder.Services.AddControllersWithViews();
 

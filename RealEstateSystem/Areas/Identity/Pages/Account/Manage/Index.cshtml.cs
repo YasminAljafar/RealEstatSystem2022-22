@@ -31,10 +31,8 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
-
         [TempData]
         public string StatusMessage { get; set; }
-
         [BindProperty]
         public InputModel Input { get; set; }
         public IEnumerable<UserType> userTypes { get; set; }
@@ -42,25 +40,18 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
-
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
-
             [Display(Name = "Description")]
             public string Description { get; set; }
-
             [Display(Name = "Country")]
             public string Country { get; set; }
-
             [Display(Name = "City")]
             public string City { get; set; }
-
             [Display(Name = "Birthday")]
             public DateTime Birthday { get; set; }
-
             [Display(Name = "Gender")]
             public bool Gender { get; set; }
 
@@ -78,7 +69,9 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
             public byte[] Image { get; set; }
 
             public int usertype { get; set; }
-            public UserType UserType { get; set; }
+            public int UserTypeId { get; set; }
+
+           
 
           
         }
@@ -87,7 +80,9 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-       
+            var CurrentUser = _userManager.Users.Include(x => x.UserType).Where(x => x.UserName == userName).FirstOrDefault();
+
+
 
             Username = userName;
 
@@ -101,10 +96,8 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = phoneNumber,
                 Gender = user.Gender,
                 Birthday = user.birthday,
-                UserType = user.UserType,
-                Image=user.Image,
-
-
+                UserTypeId = CurrentUser.UserTypeId,
+                Image=CurrentUser.Image,
             };
         }
 
@@ -143,7 +136,7 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
             var city=user.City;
             var gender=user.Gender;
             var birthday=user.birthday;
-            var userType=user.UserType;
+            var userTypeId=user.UserTypeId;
            
 
             if (Input.FirstName != firstname ||
@@ -152,8 +145,7 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
                Input.Country != country ||
                Input.City != city ||
                Input.Gender != gender ||
-               Input.Birthday !=birthday ||
-               Input.UserType != userType )
+               Input.Birthday !=birthday  )
             {
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -162,7 +154,6 @@ namespace RealEstateSystem.Areas.Identity.Pages.Account.Manage
                 user.City = Input.City;
                 user.Gender = Input.Gender;
                 user.birthday=Input.Birthday;
-               
               //  user.UserType = userTypes.Where(x => x.Id == Input.usertype).FirstOrDefault();
                 await _userManager.UpdateAsync(user);
 

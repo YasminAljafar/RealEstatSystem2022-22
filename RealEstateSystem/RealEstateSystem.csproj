@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Uploads\Advertisings\" />
-    <Folder Include="wwwroot\Uploads\Peoperties\" />
+    <Folder Include="wwwroot\Uploads\Properties\" />
   </ItemGroup>
 
 

@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
     GetGovernorate();
-    $('#City').attr('disabled', true);
-    $('#District').attr('disabled', true);
+    $('#City').attr('readonly', true);
+    $('#District').attr('readonly', true);
 
     $('#Governorate').change(function () {
-        $('#City').attr('disabled', false);
+        $('#City').attr('readonly', false);
         var id = $(this).val();
         $('#City').empty();
         $('#City').append('<option> Select City  </option > ');
@@ -22,7 +22,7 @@
 });
 
 $('#City').change(function () {
-    $('#District').attr('disabled', false);
+    $('#District').attr('readonly', false);
     var id = $(this).val();
     $('#District').empty();
     $('#District').append('<option> Select District </option> ');

@@ -6,9 +6,9 @@ namespace RealEstateSystem.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "{0} is Required")]
+     
         public int  RoomCount { get; set; }
-        //   public int BathroomCount { get; set; }
+     
 
         public int Floor { get; set; }
 

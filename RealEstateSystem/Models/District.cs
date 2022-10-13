@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RealEstateSystem.Models
@@ -15,5 +16,10 @@ namespace RealEstateSystem.Models
         public City City { get; set; }
 
         public List<Property> Properties { get; set; }
+
+        //public static implicit operator District(List<District> v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RealEstateSystem.Models
@@ -6,15 +7,12 @@ namespace RealEstateSystem.Models
     public class Property
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "{0} is Required")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "{0} is Required")]
         public decimal Price { get; set; }
-
-        [Required(ErrorMessage = "{0} is Required")]
         public decimal Space { get; set; }
-        
-        [Required(ErrorMessage = "{0} is Required")]
+        public decimal lat { get; set; }
+        public decimal lng { get; set; }
+        public DateTime datetime { get; set; }
         public string Description { get; set; }
         public int DistrictId { get; set; }
         public District District { get; set; }
@@ -27,11 +25,12 @@ namespace RealEstateSystem.Models
         public List<PropertyImage> propertyImages { get; set; }
         public ICollection<ApplicationUser> Users { get; set; }
         public List<PropertyUser> PropertyUsers { get; set; }
+        public int UserTypeId { get; set; }
+        public List<UserType> UserType { get; set; }
         public Land Land { get; set; }
         public Home Home { get; set; }
         public Commerial Commerial { get; set; }
-
-      
+        public string CreatedBy { get; set; }
         
     }
 }

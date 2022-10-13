@@ -1,787 +1,497 @@
-﻿ <!-- ======= Intro Section ======= -->
-  <div class="intro intro-carousel swiper position-relative">
+﻿@using RealEstateSystem.ViewModels
+@model HomeVM
+
+
+<!-- ======= Intro Section ======= -->
+<div class="intro intro-carousel swiper position-relative" dir="rtl">
 
     <div class="swiper-wrapper">
 
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-1.jpg)">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top">@*Doral, Florida*@ @DateTime.Now
-                     @* <br> 78345*@
-                    </p>
-                    <h1  style="color:white;" >
-                      <span class="color-b">The First  </span > Website For Selling And Renting RealEstates
-                      <br > In Syria Idlib
-                    </h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">Sale | $ 30.000</span></a>
-                    </p>
-                  </div>
+        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-1.jpg)">
+            <div class="overlay overlay-a"></div>
+            <div class="intro-content display-table">
+                <div class="table-cell">
+                    <div class="container">
+                        <div class="row">
+                            <div class="" style="text-align:center;">
+                                <div class="intro-body">
+
+                                    <h1 style="color:white;">
+                                        الموقع <span class="color-b">الأول   </span>  لبيع وشراء وتأجير العقارات في الشمال المحرر
+                                        <br> سوريا -إدلب
+                                    </h1>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-2.jpg)">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top">@*Doral, Florida*@ @DateTime.Now
-                      <br> @*78345*@
-                    </p>
-                    <h1  style="color:white;" >
-                      <span class="color-b">The First  </span > Website For Selling And Renting RealEstates
-                      <br > In Syria Idlib
-                    </h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">rent | $ 12.00</span></a>
-                    </p>
-                  </div>
+        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-2.jpg)">
+            <div class="overlay overlay-a"></div>
+            <div class="intro-content display-table">
+                <div class="table-cell">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align:center;">
+                                <div class="intro-body">
+                                    <h1 style="color:white; text-align:center">
+                                        الموقع <span class="color-b">الأول   </span>  لبيع وشراء وتأجير العقارات في الشمال المحرر
+                                        <br> سوريا -إدلب
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-3.jpg)">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top">@*Doral, Florida*@ @DateTime.Now
-                      <br> @*78345*@
-                    </p>
-                    <h1 class="@*intro-title mb-4 *@" style="color:white;" >
-                      <span class="color-b">The First  </span > Website For Selling And Renting RealEstates
-                      <br > In Syria Idlib
-                    </h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">rent | $ 15.00</span></a>
-                    </p>
-                  </div>
+        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-3.jpg)">
+            <div class="overlay overlay-a"></div>
+            <div class="intro-content display-table">
+                <div class="table-cell">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align:center;">
+                                <div class="intro-body">
+                                    <h1 style="color:white; text-align:center">
+                                        الموقع <span class="color-b">الأول   </span>  لبيع وشراء وتأجير العقارات في الشمال المحرر
+                                        <br> سوريا -إدلب
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <div class="swiper-pagination"></div>
-  </div><!-- End Intro Section -->
-<main id="main">
+</div><!-- End Intro Section -->
+<main id="main" dir="rtl">
 
     <!-- ======= Services Section ======= -->
     <section class="section-services section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Our Services</h2>
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">خدمات الموقع</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="bi bi-cart"></span>
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">شراء</h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                الموقع يعمل على ربط المشترين مع البائعين ومالكي العقارات مع المستأجرين، ويتيح لأصحاب المكاتب العقارية والمستثمرين إضافة وحذف وتعديل العقارات المتوفرة لديهم، ويسمح  للزائرين التعرّف والاطلاع على جميع العقارات المعروضة للبيع والشراء والإجار، وكذلك يوفر إمكانية البحث عن العقار وبالتالي فإن الوظيفة الأساسية التي يؤديها موقع HOME.com هي: تأجير الممتلكات، بيع الممتلكات، شراء الممتلكات.
+                            </p>
+                        </div>
+                        <div class="card-footer-c">
+                            <a href="#" class="link-c link-icon">
+                                قراءة المزيد
+                                <span class="bi bi-chevron-left"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="bi bi-calendar4-week"></span>
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">تأجير</h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                الموقع يعمل على ربط المشترين مع البائعين ومالكي العقارات مع المستأجرين، ويتيح لأصحاب المكاتب العقارية والمستثمرين إضافة وحذف وتعديل العقارات المتوفرة لديهم، ويسمح  للزائرين التعرّف والاطلاع على جميع العقارات المعروضة للبيع والشراء والإجار، وكذلك يوفر إمكانية البحث عن العقار وبالتالي فإن الوظيفة الأساسية التي يؤديها موقع HOME.com هي: تأجير الممتلكات، بيع الممتلكات، شراء الممتلكات.
+
+                            </p>
+                        </div>
+                        <div class="card-footer-c">
+                            <a href="#" class="link-c link-icon">
+                                قراءة المزيد
+                                <span class="bi bi-chevron-left"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="bi bi-card-checklist"></span>
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">بيع</h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                الموقع يعمل على ربط المشترين مع البائعين ومالكي العقارات مع المستأجرين، ويتيح لأصحاب المكاتب العقارية والمستثمرين إضافة وحذف وتعديل العقارات المتوفرة لديهم، ويسمح  للزائرين التعرّف والاطلاع على جميع العقارات المعروضة للبيع والشراء والإجار، وكذلك يوفر إمكانية البحث عن العقار وبالتالي فإن الوظيفة الأساسية التي يؤديها موقع HOME.com هي: تأجير الممتلكات، بيع الممتلكات، شراء الممتلكات.
+
+                            </p>
+                        </div>
+                        <div class="card-footer-c">
+                            <a href="#" class="link-c link-icon">
+                                قراءة المزيد
+                                <span class="bi bi-chevron-left"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-cart"></span>
-                </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Lifestyle</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">
-                  Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                  convallis a pellentesque
-                  nec, egestas non nisi.
-                </p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-calendar4-week"></span>
-                </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Loans</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">
-                  Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Mauris blandit
-                  aliquet elit, eget tincidunt
-                  nibh pulvinar a.
-                </p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
-                  <span class="bi bi-calendar4-week"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-card-checklist"></span>
-                </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Sell</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">
-                  Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                  convallis a pellentesque
-                  nec, egestas non nisi.
-                </p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section><!-- End Services Section -->
+    <!-- ======= إعلانات مميزة ======= -->
+    <section class="section-testimonials section-t8 nav-arrow-a">
+        <div class="container" style="margin-bottom:50px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">
+                                إعلانات مميزة
+                            </h2>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                        </div>
 
-    <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Latest Properties</h2>
-              </div>
-              <div class="title-link">
-                <a href="property-grid.html">All Property
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+                        <div class="title-link">
+                            <a asp-controller="Advertisings" asp-action="index">
+                                <span class="bi bi-chevron-right"></span>
+                                كل الإعلانات
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div id="testimonial-carousel" class="swiper ">
+                <div class="swiper-wrapper">
+                    @foreach (var ad in Model.Advertisings)
+                    {
+                        <div class="carousel-item-a swiper-slide">
+                            <div class="testimonials-box">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="testimonial-img">
+                                            <img src="~/Uploads/Advertisings/@ad.ImageURL" class="img-fluid  img-thumbnail" style="height:450px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+
+                                        <div class="testimonial-author-box">
+                                            @{
+
+                                                if (@Model.Image != null && @Model.Image.Any())
+                                                {
+                                                        <img id="Image" alt="profile" class="testimonial-avatar" src="data:image/*;base64,@(Convert.ToBase64String(@Model.Image))" />
+                                                }
+                                                else
+                                                {
+                                                        <img src="~/assets/img/gender_neutral_user_120px.png" class="testimonial-avatar" />
+                                                }
+                                            }
+
+
+                                            <h2 class="testimonial-author">@ad.User.UserName </h2>
+
+                                        </div>
+
+                                        @* <div class="testimonial-ico">
+                                    <i class="bi bi-chat-quote-fill"></i>
+                                    </div>*@
+                                        @*<div class="testimonials-content">*@
+                                        <h2>
+                                            @ad.Title  <div style="display:inline-block; font-size:12px;">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                        </h2>
+                                        <p style="font-size:9px; margin-top:10px;"> @ad.PublishDate</p>
+
+
+                                        <p class="testimonial-text">
+                                            @ad.Description
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    }
+                    <!-- End carousel item -->
+                </div>
+            </div>
+            <div class="testimonial-carousel-pagination carousel-pagination"></div>
+
         </div>
+    </section><!-- نهاية إعلانات مميزة -->
+    <!-- ======= Latest Properties Section ======= -->
+    @if (!Model.Properties.Any())
+    {
+        <div class="alert alert-danger" role="alert" style="margin-top:75px;">  لا يوجد عقارات متاحة </div>
+    }
+    else
+    {
+        <section class="section-property section-t8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-box">
+                                <h2 class="title-a">العقارات الحديثة</h2>
+                            </div>
+                            <div class="title-link">
+                                <a asp-controller="Properties" asp-action="index">
+                                    <span class="bi bi-chevron-right"></span>
+                                    كل العقارات
 
-        <div id="property-carousel" class="swiper">
-          <div class="swiper-wrapper">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="property-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                        @foreach (var property in Model.Properties)
+                        {
+                            <div class="carousel-item-b swiper-slide">
+                                <div class="card-box-a card-shadow">
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">206 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+                                    <div class="card-box-a card-shadow">
+                                        <div class="img-box-a">
+                                            @{
+                                                var image = "";
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-3.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">157 West
-                          <br /> Central Park</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+                                                if (property.propertyImages != null && property.propertyImages.Any())
+                                                {
+                                                    image = $"/Uploads/Properties/{property.propertyImages[0].imageUrl}";
+                                                }
+                                                else
+                                                {
+                                                    image = "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo=";
+                                                }
+                                            }
+                                            <img src="@image" class="img-a img-fluid" />
+                                        </div>
+                                        <div class="card-overlay">
+                                            <div class="card-overlay-a-content">
+                                                <div class="card-header-a">
+                                                    <h2 class="card-title-a">
+                                                        <a asp-controller="Properties" asp-route-id="@property.Id" asp-action="SingleProperty">
+                                                            @property.Name
+                                                        </a>
+                                                    </h2>
+                                                    <p style="color:white;">  @property.Description</p>
+                                                </div>
+                                                <div class="card-body-a">
+                                                    <div class="price-box d-flex">
+                                                        <span class="price-a">@property.OperationType.Name| $ @property.Price </span>
+                                                    </div>
+                                                    <a asp-controller="Properties" asp-route-id="@property.Id" asp-action="SingleProperty" class="link-a">
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-7.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">245 Azabu
-                          <br /> Nishi Park let</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+                                                        لمعرفة المزيد إضغط هنا
+                                                        <span class="bi bi-chevron-left"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="card-footer-a">
+                                                    <ul class="card-info d-flex justify-content-around">
+                                                        <li>
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-10.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">204 Montal
-                          <br /> South Bela Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-          </div>
-        </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
+                                                            <h4 class="card-info-title" style="color:white;">المساحة</h4>
+                                                            <span dir="ltr">
+                                                                @property.Space m
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title" style="color:white;">الحالة</h4>
+                                                            <span>@*@(property.Land!=null?property.Land.Width:0)*@ @property.PropertyStatus.Name</span>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title" style="color:white;">عدد الغرف</h4>
+                                                            <span>@(property.Home!=null?property.Home.RoomCount:0) </span>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title" style="color:white;">الصور</h4>
+                                                            <span>@property.propertyImages.Count() </span>
+                                                        </li>
 
-      </div>
-    </section><!-- End Latest Properties Section -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+
+                                <!-- End carousel item -->
+
+
+
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="propery-carousel-pagination carousel-pagination"></div>
+
+                </div>
+        </section>
+
+        <!-- End Latest Properties Section -->
+    }
     <!-- ======= Agents Section ======= -->
     <section class="section-agents section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Best Agents</h2>
-              </div>
-              <div class="title-link">
-                <a href="agents-grid.html">All Agents
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">أفضل العملاء</h2>
+                        </div>
+                        <div class="title-link">
+                            <a href="agents-grid.html">
+                                <span class="bi bi-chevron-right"></span>
+                                كل العملاء
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
-                <img src="assets/img/agent-4.jpg" alt="" class="img-d img-fluid">
-              </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="agent-single.html" class="link-two">Margaret Sotillo
-                        <br> Escala</a>
-                    </h3>
-                  </div>
+
+
+            <div id="property-carousel" class="swiper">
+                <div class="swiper-wrapper">
+                    @foreach (var user in Model.Users)
+                    {
+                        <div class="carousel-item-b swiper-slide" onclick="goTo(`@Url.Action("ShowUser","UserProfile")?id=@user.Id`)">
+
+                            <div class="card-box-d card-shadow">
+                                <div class="img-box-d">
+                                    @* <img src="~/assets/img/agent-4.jpg" alt="" class="img-d img-fluid">*@
+                                    @{
+
+                                        if (user.Image != null && user.Image.Any())
+                                        {
+                                                
+                                                    <img id="Image" alt="profile" class="img-d img-fluid" src="data:image/*;base64,@(Convert.ToBase64String(user.Image))" />
+                                                
+                                        }
+                                        else
+                                        {
+                                                <img id="Image" alt="profile" class="img-d img-fluid" src="~/assets/img/image not found.png" />
+
+                                        }
+                                    }
+                                </div>
+                               
+                                    <div class="card-overlay card-overlay-hover" style="padding:50px;">
+                                        <div class="card-header-d">
+                                            <div class="card-title-d align-self-center">
+                                                <h3 class="title-d">
+                                                    <a asp-controller="UserProfile" asp-action="Index" asp-route-id="@user.Id" style="z-index:1000;cursor:pointer;">
+                                                        الاسم:
+                                                        @user.FirstName @user.LastName
+
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="card-body-d">
+                                            <p class="content-d color-text-a">
+
+                                                @user.Description
+                                            </p>
+
+                                            <div class="info-agents color-a">
+                                                <h5>للتواصل:</h5>
+                                                <p>
+                                                    <strong>هاتف: </strong> @user.PhoneNumber
+                                                </p>
+                                                <p>
+                                                    <strong>إيميل: </strong> @user.Email
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer-d" dir="ltr">
+                                            <div class="socials-footer d-flex justify-content-center">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="link-one">
+                                                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="link-one">
+                                                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="link-one">
+                                                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="link-one">
+                                                            <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="card-body-d">
-                  <p class="content-d color-text-a">
-                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                  </p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>Phone: </strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>Email: </strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-twitter" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-instagram" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-linkedin" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                <div class="propery-carousel-pagination carousel-pagination"></div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
-                <img src="assets/img/agent-1.jpg" alt="" class="img-d img-fluid">
-              </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="agent-single.html" class="link-two">Stiven Spilver
-                        <br> Darw</a>
-                    </h3>
-                  </div>
-                </div>
-                <div class="card-body-d">
-                  <p class="content-d color-text-a">
-                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                  </p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>Phone: </strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>Email: </strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-twitter" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-instagram" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-linkedin" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
-                <img src="assets/img/agent-5.jpg" alt="" class="img-d img-fluid">
-              </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="agent-single.html" class="link-two">Emma Toledo
-                        <br> Cascada</a>
-                    </h3>
-                  </div>
-                </div>
-                <div class="card-body-d">
-                  <p class="content-d color-text-a">
-                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                  </p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>Phone: </strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>Email: </strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-twitter" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-instagram" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-linkedin" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
         </div>
-      </div>
-    </section><!-- End Agents Section -->
+    </section>
 
-    <!-- ======= Latest News Section ======= -->
-    <section class="section-news section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Latest News</h2>
-              </div>
-              <div class="title-link">
-                <a href="blog-grid.html">All News
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- End Agents Section -->
 
-        <div id="news-carousel" class="swiper">
-          <div class="swiper-wrapper">
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
-                <div class="img-box-b">
-                  <img src="assets/img/post-2.jpg" alt="" class="img-b img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">House</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="blog-single.html">House is comming
-                          <br> new</a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
-                <div class="img-box-b">
-                  <img src="assets/img/post-5.jpg" alt="" class="img-b img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">Travel</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="blog-single.html">Travel is comming
-                          <br> new</a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+</main><!-- End #main -->
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
-                <div class="img-box-b">
-                  <img src="assets/img/post-7.jpg" alt="" class="img-b img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">Park</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="blog-single.html">Park is comming
-                          <br> new</a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
-                <div class="img-box-b">
-                  <img src="assets/img/post-3.jpg" alt="" class="img-b img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">Travel</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="#">Travel is comming
-                          <br> new</a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-
-          </div>
-        </div>
-
-        <div class="news-carousel-pagination carousel-pagination"></div>
-      </div>
-    </section><!-- End Latest News Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section class="section-testimonials section-t8 nav-arrow-a">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Testimonials</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="testimonial-carousel" class="swiper">
-          <div class="swiper-wrapper">
-
-            <div class="carousel-item-a swiper-slide">
-              <div class="testimonials-box">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-img">
-                      <img src="assets/img/testimonial-1.jpg" alt="" class="img-fluid">
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-ico">
-                      <i class="bi bi-chat-quote-fill"></i>
-                    </div>
-                    <div class="testimonials-content">
-                      <p class="testimonial-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                        debitis hic ber quibusdam
-                        voluptatibus officia expedita corpori.
-                      </p>
-                    </div>
-                    <div class="testimonial-author-box">
-                      <img src="assets/img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
-                      <h5 class="testimonial-author">Albert & Erika</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-
-            <div class="carousel-item-a swiper-slide">
-              <div class="testimonials-box">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-img">
-                      <img src="assets/img/testimonial-2.jpg" alt="" class="img-fluid">
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-ico">
-                      <i class="bi bi-chat-quote-fill"></i>
-                    </div>
-                    <div class="testimonials-content">
-                      <p class="testimonial-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                        debitis hic ber quibusdam
-                        voluptatibus officia expedita corpori.
-                      </p>
-                    </div>
-                    <div class="testimonial-author-box">
-                      <img src="assets/img/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
-                      <h5 class="testimonial-author">Pablo & Emma</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-
-          </div>
-        </div>
-        <div class="testimonial-carousel-pagination carousel-pagination"></div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-  </main><!-- End #main -->
+<script>
+    function goTo(url) {
+        window.location.href = url;
+    }
+</script>

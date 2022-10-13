@@ -1,96 +1,102 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "الصفحة الشخصية";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 <div class="container">
-    <h4>@ViewData["Title"]</h4>
-    <partial name="_StatusMessage" model="Model.StatusMessage" />
-    <form id="profile-form mt-4" method="post">
-        <div class="row">
-            <div class="col-md-6">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Username"></label>
-                    <input asp-for="Username" class="form-control" disabled />
-                </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.FirstName"></label>
-                    <input asp-for="Input.FirstName" class="form-control" />
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.LastName"></label>
-                    <input asp-for="Input.LastName" class="form-control" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.Description"></label>
-                    <input asp-for="Input.Description" class="form-control" />
-                    <span asp-validation-for="Input.Description" class="text-danger"></span>
-                </div>
+    <div class="container" dir="rtl">
+        <h4>@ViewData["Title"]</h4>
+        <partial name="_StatusMessage" model="Model.StatusMessage" />
+        <form id="profile-form mt-4" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group  mt-2">
+                        <label asp-for="Username">اسم المستخدم</label>
+                        <input asp-for="Username" class="form-control" disabled />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.FirstName">الاسم الأول</label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.LastName">الاسم الثاني</label>
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.Description">الوصف</label>
+                        <input asp-for="Input.Description" class="form-control" />
+                        <span asp-validation-for="Input.Description" class="text-danger"></span>
+                    </div>
 
-                <div class="form-group mt-4">
-                    <label asp-for="Input.UserType"></label>
-                    <select asp-for="Input.UserType" disabled class="form-control" asp-items="@(new SelectList(Model.userTypes,"Id","Name"))">
-                    </select>
-                    <span asp-validation-for="Input.UserType" class="text-danger"></span>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.UserTypeId">نوع المستخدم</label>
+                        <select asp-for="Input.UserTypeId" class="form-control" disabled  asp-items="@(new SelectList(Model.userTypes,"Id","Name"))">
+                         
+                        </select>
+                        <span asp-validation-for="Input.UserTypeId" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.Country"></label>
-                    <input asp-for="Input.Country" class="form-control" />
-                    <span asp-validation-for="Input.Country" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.City"></label>
-                    <input asp-for="Input.City" class="form-control" />
-                    <span asp-validation-for="Input.City" class="text-danger"></span>
-                </div>
-
-
-                <div class="form-group">
-                    <label asp-for="Input.Gender"></label>
-                    <select asp-for="Input.Gender" class="form-control">
-                        <option selected disabled> Select Your Gender</option>
-                        <option value="false">Male</option>
-                        <option value="true">Female</option>
-                    </select>
-                    <span asp-validation-for="Input.Gender" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-4">
-                    <label asp-for="Input.PhoneNumber"></label>
-                    <input asp-for="Input.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-                <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
-            </div>
+                <div class="col-md-4">
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.Country">البلد</label>
+                        <input asp-for="Input.Country" class="form-control" />
+                        <span asp-validation-for="Input.Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.City">المدينة</label>
+                        <input asp-for="Input.City" class="form-control" />
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
 
 
-            <div class="col-md-6">
-                <div class="form-group">
-@*                    <label asp-for="Input.Image" class="w-100"></label>
-*@                    @if (Model.Input.Image != null)
-                    {
-                        <img id="Image" alt="profile" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.Image))" />
-                    }
-                    else
-                    {
-                        <img id="Image" alt="profile" class="profile-image" src="~/assets/img/gender_neutral_user_120px.png" style="width:200px; " class="img-thumbnail" />
-                    }
-                    <div class="custom-file mt-2">
-                        <input type="file"
-                               accept="image/*"
-                               asp-for="Input.Image"
-                               class="custom-file-input"
-                               onchange="document.getElementById('Image').src=window.URL.createObjectURL(this.files[0])"/>
-                        <label class="custom-file-lablel" asp-for="Input.Image">Choose Picture ... </label>
-                        <span asp-validation-for="Input.Image" class="text-danger"></span>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.Gender">الجنس</label>
+                        <select asp-for="Input.Gender" class="form-control">
+                            <option selected disabled> </option>
+                            <option value="false">ذكر</option>
+                            <option value="true">أنثى</option>
+                        </select>
+                        <span asp-validation-for="Input.Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Input.PhoneNumber">رقم الهاتف</label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <button id="update-profile-button" type="submit" class="w-100 btn btn-success mt-4">حفظ</button>
+                </div>
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        @*                    <label asp-for="Input.Image" class="w-100"></label>
+                        *@                    @if (Model.Input.Image != null)
+                        {
+                            <img id="Image" alt="profile" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.Image))" style="width:100px;  />
+                        }
+                        else
+                        {
+                        <img id="Image" alt="profile" class="profile-image" src="~/assets/img/gender_neutral_user_120px.png" style="width:100px; " class="img-thumbnail" />
+                        }
+                        <div class="custom-file mt-2">
+                            <input type="file"
+                                   accept="image/*"
+                                   asp-for="Input.Image"
+                                   class="custom-file-input"
+                                   onchange="document.getElementById('Image').src=window.URL.createObjectURL(this.files[0])" />
+                            <label class="custom-file-lablel" asp-for="Input.Image">اختر صورة .. </label>
+                            <span asp-validation-for="Input.Image" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 @section Scripts {

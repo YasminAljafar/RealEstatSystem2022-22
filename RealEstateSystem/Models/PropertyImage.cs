@@ -7,7 +7,7 @@ namespace RealEstateSystem.Models
         public int id { get; set; }
         [Required]
         public string imageUrl { get; set; }
-        [Required]
+       
         public string Description { get; set; }
 
         public int PropertyId { get; set; }

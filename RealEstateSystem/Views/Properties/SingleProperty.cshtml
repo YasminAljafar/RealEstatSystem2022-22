@@ -1,0 +1,387 @@
+﻿@model RealEstateSystem.Models.Property
+@*@using RealEstateSystem.ViewModels
+@model PropertyViewModel*@
+@*@using RealEstateSystem.ViewModels
+@model PropertyUserViewModel*@
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Properties" asp-action="Index">العقارات</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index">الرئيسية</a>
+                        </li>
+
+                    </ol>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+
+                        <div class="title-single-box">
+                            <h1 class="title-single">  @Model.Name </h1>
+                            <span class="color-text-a">أهلاً بك عزيزي الزائر</span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Single-->
+    <!-- ======= Property Single ======= -->
+    <section class="property-single nav-arrow-b">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- ======= start slider ======= -->
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @for (int i = 0; i < Model.propertyImages.Count(); i++)
+                            {
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="@(i==0? "active":"")"></li>
+                            }
+
+                        </ol>
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < Model.propertyImages.Count(); i++)
+                            {
+                                <div class="@(i==0? "carousel-item active":"carousel-item")" style="width:500px ;">
+                                    <img src="/Uploads/Properties/@Model.propertyImages[i].imageUrl" style="width:800px; height:500px;" alt="ImagesNotFound">
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- ======= end slider ======= -->
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="container" dir="rtl">
+            <div class="row section-t3">
+                <div class="col-sm-12">
+                    <div class="title-box-d">
+                        <h2 class="title-d"> تفاصيل العقار:</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4> @Html.DisplayFor(model => model.Name)</h4>
+                <hr />
+                <dl class="row">
+                    <div class="col-md-4">
+                        <dt class="col-mt-4">
+                            اسم العقار:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-mt-4">
+                            سعر العقار:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Price)
+                        </dd>
+                        <dt class="col-mt-4">
+                            مساحة العقار:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Space)
+                        </dd>
+                        <dt class="col-mt-4">
+                            وصف العقار:
+                        </dt>
+                        <dd class="col-mt-40">
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt class="col-sm-2">
+                            المحافظة:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.District.City.Governorate.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            المدينة:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model =>  model.District.City.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            الحي:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.District.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            خط الطول :
+                        </dt>
+                        <dd class="col-mt-4" id="lng">
+                            @Html.DisplayFor(model => model.lng)
+                        </dd>
+                        <dt class="col-sm-2">
+                            خط العرض:
+                        </dt>
+                        <dd class="col-mt-4" id="lat">
+                            @Html.DisplayFor(model => model.lat)
+                        </dd>
+      
+
+                        <dt class="col-mt-4">
+                            نوع العقار:
+                        </dt>
+                        <dd class="col-mt-4" id="type">
+                            @Html.DisplayFor(model => model.PopertType.Name)
+                        </dd>
+                        <dt class="col-mt-4">
+
+                            حالة العقار:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.PropertyStatus.Name)
+                        </dd>
+                        <dt class="col-mt-4">
+                            نوع العقد:
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.OperationType.Name)
+                        </dd>
+
+                    </div>
+
+
+                    <div class="col-md-4" id="land">
+                        <dt class="col-mt-4">
+                            هل الأرض مشجرة؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.IsTimberLand)
+                        </dd>
+                        <dt class="col-mt-4">
+
+                            الطول:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.Length)
+                        </dd>
+                        <dt class="col-mt-4">
+                            العرض:
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.Width)
+                        </dd>
+                        <dt class="col-mt-4">
+                            هل يوجد  بئر مياه؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.WaterWell)
+                        </dd>
+                        <dt class="col-mt-4">
+                            هل يوجد بالقرب من الأرض بئر مياه؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.WaterWellAtNear)
+                        </dd>
+                        <dt class="col-mt-4">
+                            هل الأرض صالحة للبناء؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.LandForConstruction)
+                        </dd>
+                        <dt class="col-mt-4">
+                            هل الأرض صالحة للزراعة؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.LandIsArable)
+                        </dd>
+                        <dt class="col-mt-4">
+                            نوع التربة؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Land.EarthType.id)
+                        </dd>
+
+                    </div>
+
+                    <div class="col-md-4" id="home">
+                        <dt class="col-mt-4">
+                            عدد الغرف:
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Home.RoomCount)
+                        </dd>
+                        <dt class="col-mt-4">
+                            أي طابق؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Home.Floor)
+                        </dd>
+
+                        <dt class="col-mt-4">
+                            هل مشمس؟
+                        </dt>
+                        <dd class="col-mt-4">
+                            @Html.DisplayFor(model => model.Home.IsSunny)
+                        </dd>
+                        <dt class="col-mt-4">
+                            id العقار
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Home.PropertyId)
+                        </dd>
+
+                    </div>
+                </dl>
+                <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                            <h2 class="title-d"> صور العقار:</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var img in Model.propertyImages)
+                {
+                    <div class="col-md-4 mt-4">
+                        <img src="/Uploads/Properties/@img.imageUrl" class="img-thumbnail">
+                    </div>
+                }
+            </div>
+
+            <div class="row section-t3">
+                <div class="col-sm-12">
+                    <div class="title-box-d" style="margin-bottom:50px;">
+                        <h2 class="title-d">الموقع على الخريطة:</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map" style="width:100%; height:460px" ;></div>
+
+           @* <div class="col-md-12  mt-4" style="margin-bottom:50px;">
+                <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                            <h2 class="title-d">معلومات المالك:</h2>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                @foreach (var item in Model.Users)
+               {
+               
+                    <div class="col-md-6 col-lg-4">
+                      <a asp-controller="UserProfile" asp-action="Index" asp-route-id="@item.Id" style="z-index:1000;cursor:pointer;">
+                          <img src="~/assets/img/agent-4.jpg" alt="" class="img-fluid">
+                          </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="property-agent">
+                             <h4 class="title-agent">Anabella Geller</h4>
+                            <p class="color-text-a">
+
+                            </p>
+                            <ul class="list-unstyled">
+                                <li class="d-flex justify-content-between">
+                                    <strong> اسم المالك:</strong>
+                                    <span class="color-text-a">@item.FirstName @item.LastName</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong> رقم التواصل:</strong>
+                                    <span class="color-text-a">@item.PhoneNumber</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>نوع المستخدم: </strong>
+                                    <span class="color-text-a">@item.UserType.Name</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong> الإيميل:</strong>
+                                    <span class="color-text-a">@item.Email</span>
+                                </li>
+                            </ul>
+                            <div class="socials-a" dir="ltr">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                    <a href="https://wa.me/0046728795538" class="float" target="_blank">
+                                    <i class="fa fa-whatsapp my-float"></i>
+                                    </a>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                }
+                 </div>
+            </div>*@
+
+        </div>
+
+    </section><!-- End Property Single-->
+</main>
+
+<a href="https://wa.me/0046728795538" style="position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 65px;
+    right: 20px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;" target="_blank">
+    <i class="fa fa-whatsapp " style="margin-top:10px;"></i>
+</a>
+<script>
+var lat = "@Model.lat"; 
+var lng = "@Model.lng"; 
+    var map = L.map('map').setView([lat, lng], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+    var marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup("<b>Hello world!</b><br>I am yasmin yes I did it.").openPopup();
+    circle.bindPopup("I am a circle.");
+    polygon.bindPopup("I am a polygon.");
+</script>
+<script src="~/assets/js/source_code.js"></script>

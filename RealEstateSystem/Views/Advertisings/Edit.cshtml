@@ -3,15 +3,15 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-<h1 style="margin-top:100px;">Edit</h1>
+<div class="container" dir="rtl">
+<h1 style="margin-top:130px;">تعديل إعلان</h1>
 
-<h4>Advertising</h4>
+<h4></h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">1
+    <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"> الصورة</div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ImageURL" />
             <div class="form-group mt-4">
@@ -21,36 +21,35 @@
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">العنوان</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <label asp-for="Description" class="control-label">الوصف</label>
+                <textarea asp-for="Description" class="form-control col-lg-4" ></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group mt-4" >
+           @* <div class="form-group mt-4" >
                 <label asp-for="PublishDate" class="control-label"></label>
                 <input asp-for="PublishDate" class="form-control" />
                 <span asp-validation-for="PublishDate" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>*@
+            </div>*@
+            <div class="form-group">
+                @*<label asp-for="ApplicationUserId" class="control-label"></label>*@
               @*  <input asp-for="ApplicationUserId" class="form-control" />*@
                <input asp-for="ApplicationUserId" class="form-control" value="@(Model.ApplicationUserId)" hidden />
-
-                @*<span asp-validation-for="ApplicationUserId" class="text-danger"></span>
-            </div>*@
+                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+            </div>
             <div class="form-group mt-4">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index1" class="btn btn-primary">Back to List</a>
 </div>
 
 </div>
